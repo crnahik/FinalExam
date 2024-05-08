@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tìm kiếm</title>
+    <style>
+        /* CSS styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+        nav {
+            background-color: #444;
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 5px 10px;
+        }
+        nav a:hover {
+            background-color: #555;
+        }
+        form {
+            text-align: center;
+            margin-top: 20px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            width: 300px;
+            font-size: 16px;
+        }
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+        input[type="submit"] {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        #search-result {
+            margin-top: 20px;
+            text-align: center;
+        }
+        #search-result img {
+            width: 200px;
+            height: auto;
+            margin-top: 10px;
+        }
+        #search-result h3 {
+            margin-top: 10px;
+            font-size: 18px;
+        }
+        #search-result p {
+            font-size: 14px;
+            color: #555;
+        }
+        .news-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding: 20px;
+        }
+        .news-item {
+            margin:auto;
+            width: calc(50% - 20px);
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #f4f4f4;
+            border-radius: 5px;
+        }
+        .news-item img {
+            width: 210px;
+            height: 180px;
+            border-radius: 5px;
+        }
+        .news-item h3 {
+            margin-top: 10px;
+            font-size: 18px;
+        }
+        .news-item p {
+            font-size: 14px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Tìm kiếm</h1>
+    </header>
+    <nav>
+        <a href="index.html">Trang Chủ</a>
+        <a href="category.html">Chuyên mục tin tức</a>
+        <a href="search.html">Tìm kiếm</a>
+        <a href="contact.html">Liên hệ</a>
+    </nav>
+    <form id="search-form">
+        <input type="text" id="search-input" placeholder="Nhập từ khóa tìm kiếm...">
+        <input type="submit" value="Tìm kiếm">
+    </form>
+    <div id="search-result"></div>
+    
+    <script src="data.js"></script>
+    <script>
+        // Lấy dữ liệu tin tức từ file data.js
+        let newsData = news.new;
+
+        // Hàm tìm kiếm và hiển thị kết quả
+        function searchNews(keyword) {
+            let searchResult = document.getElementById('search-result');
+            searchResult.innerHTML = ''; // Xóa nội dung cũ
+
+            // Lặp qua tất cả tin tức để tìm kiếm
+            newsData.forEach(item => {
+                // Nếu tiêu đề hoặc mô tả của tin tức chứa từ khóa tìm kiếm
+                if (item.title.toLowerCase().includes(keyword.toLowerCase()) || item.description.toLowerCase().includes(keyword.toLowerCase())) {
+                    // Tạo phần tử HTML cho kết quả
+                    let newsItem = document.createElement('a');
+                    newsItem.href = `article.html?id=${item.id}`;
+
+                    newsItem.style.display = "flex";
+                    newsItem.style.justifyContent = "space-between";
+                    newsItem.classList.add('news-item');
+                    newsItem.innerHTML = `
+                        <div>
+                            <img src="${item.image}">
+                        </div>
+                        <div style="margin-left: 20px;">
+                            <h3>${item.title}</h3>
+                            <p>${item.description}</p>
+                        </div>
+                    `;
+                    searchResult.appendChild(newsItem);
+                }
+            });
+
+            // Nếu không tìm thấy kết quả
+            if (searchResult.children.length === 0) {
+                searchResult.innerHTML = '<p>Không tìm thấy kết quả nào.</p>';
+            }
+        }
+
+        // Xử lý sự kiện khi submit form
+        document.getElementById('search-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Ngăn chặn reload trang
+            let keyword = document.getElementById('search-input').value.trim(); // Lấy từ khóa tìm kiếm
+            if (keyword !== '') {
+                searchNews(keyword); // Thực hiện tìm kiếm
+            }
+        });
+    </script>
+</body>
+<footer>
+    Website Tin Tức &copy; 2024.
+	Phạm Quỳnh Trang - 23070301
+	Ngô Quang Khải - 23070411
+	Đỗ Thị Uyên - 23070444
+	Nguyễn Thảo Phương - 23070364
+</footer>
+</html>

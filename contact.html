@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liên hệ</title>
+    <style>
+        /* CSS styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+        nav {
+            background-color: #444;
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 5px 10px;
+        }
+        nav a:hover {
+            background-color: #555;
+        }
+        form {
+            text-align: center;
+            margin-top: 20px;
+        }
+        input[type="text"],
+        textarea {
+            padding: 10px;
+            width: 300px;
+            font-size: 16px;
+        }
+        input[type="submit"] {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Liên hệ</h1>
+    </header>
+    <nav>
+        <a href="index.html">Trang Chủ</a>
+        <a href="category.html">Chuyên mục tin tức</a>
+        <a href="search.html">Tìm kiếm</a>
+        <a href="contact.html">Liên hệ</a>
+    </nav>
+    <form id="contact-form">
+        <label for="name">Họ và tên:</label><br>
+        <input type="text" id="name" name="name" required><br>
+        <label for="email">Email:</label><br>
+        <input type="text" id="name" name="email" required><br>
+        <label for="message">Nội dung:</label><br>
+        <textarea id="message" name="message" rows="4" required></textarea><br>
+        <input type="submit" value="Gửi">
+    </form>
+    
+    <script>
+        // Xử lý sự kiện khi submit form
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Ngăn chặn reload trang
+
+            // Lấy giá trị từ các input
+            let name = document.getElementById('name').value.trim();
+            let email = document.getElementById('email').value.trim();
+            let message = document.getElementById('message').value.trim();
+
+            // Kiểm tra xem các trường đã được điền đầy đủ hay không
+            if (name === '' || email === '' || message === '') {
+                alert('Vui lòng điền đầy đủ thông tin.');
+                return;
+            }
+            alert('Gửi thành công!');
+            document.getElementById('contact-form').reset(); // Reset form
+        });
+    </script>
+</body>
+<footer>
+    Website Tin Tức &copy; 2024.
+	Phạm Quỳnh Trang - 23070301
+	Ngô Quang Khải - 23070411
+	Đỗ Thị Uyên - 23070444
+	Nguyễn Thảo Phương - 23070364
+</footer>
+</html>

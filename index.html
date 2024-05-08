@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Chủ - Website Tin Tức</title>
+    <style>
+        /* CSS styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+        nav {
+            background-color: #444;
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 5px 10px;
+        }
+        nav a:hover {
+            background-color: #555;
+        }
+        section {
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        footer {
+            display: block;
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            bottom: 0;
+            width: 100%;
+        }
+        .news-container {
+            
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding: 20px;
+        }
+        
+        .news-container2{
+            width: 75%;
+        }
+        .news-container1 img{
+            width: 300px;
+        }
+        .news-item {
+            width: calc(50% - 20px);
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #f4f4f4;
+            border-radius: 5px;
+        }
+        .news-item img {
+            width: 210px;
+            height: 180px;
+            border-radius: 5px;
+        }
+        .news-item h3 {
+            margin-top: 10px;
+            font-size: 18px;
+        }
+        .news-item p {
+            font-size: 14px;
+            color: #555;
+        }
+        .slider{
+            text-align: center;
+        }
+        .slider img{
+            text-align: center;
+            width:900px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Website Tin Tức</h1>
+    </header>
+    <nav>
+        <a href="index.html">Trang Chủ</a>
+        <a href="category.html">Chuyên mục tin tức</a>
+        <a href="search.html">Tìm kiếm</a>
+        <a href="contact.html">Liên hệ</a>
+    </nav>
+    <div class="slider">
+        <img src="https://user-images.githubusercontent.com/27793476/28245231-0e81a016-69b7-11e7-8c41-c0981673d50d.png">
+    </div>
+    <div style="display: flex;">
+        <div class="news-container2">
+            <h3>Tin Tức nổi bật</h3>
+            <div class="news-container">
+                
+                <!-- JavaScript code will generate news items here -->
+            </div>
+        </div>
+        <div class="news-container1">
+            <h3>About we</h3>
+            <img style="padding-top: 20px;" src="https://www.vnu.edu.vn/upload/2010/08/69/image/VNU%20IS%20logo%20(1).png">
+            <p>Nhóm 21: Thiết kế và phát triển ứng dụng web</p>
+			<p>Phạm Quỳnh Trang - 23070301</p>
+			<p>Ngô Quang Khải - 23070411</p>
+			<p>Đỗ Thị Uyên - 23070444</p>
+			<p>Nguyễn Thảo Phương - 23070364 </p>
+        </div>
+    </div>
+    
+    <script src="data.js"></script>
+    <script>
+        // JavaScript code to populate news items
+        let newsContainer = document.querySelector('.news-container');
+        let newsData = news.new;
+        newsData.forEach(item => {
+            if (item.type === "noibat") {
+                let newsItem = document.createElement('a');
+                newsItem.href = `article.html?id=${item.id}`;
+
+                newsItem.style.display = "flex";
+                newsItem.style.justifyContent = "space-between";
+                newsItem.classList.add('news-item');
+                newsItem.innerHTML = `
+                    <div>
+                        <img src="${item.image}">
+                    </div>
+                    <div style="margin-left: 20px;">
+                        <h3>${item.title}</h3>
+                        <p>${item.description}</p>
+                    </div>
+                `;
+
+                newsContainer.appendChild(newsItem);
+            }
+        });
+    </script>
+</body>
+<footer>
+    Website Tin Tức &copy; 2024.
+	Phạm Quỳnh Trang - 23070301
+	Ngô Quang Khải - 23070411
+	Đỗ Thị Uyên - 23070444
+	Nguyễn Thảo Phương - 23070364
+</footer>
+</html>

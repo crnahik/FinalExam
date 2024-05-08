@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Chủ - Website Tin Tức</title>
+    <style>
+        /* CSS styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+        nav {
+            background-color: #444;
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 5px 10px;
+        }
+        nav a:hover {
+            background-color: #555;
+        }
+        section {
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        footer {
+            display: block;
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            bottom: 0;
+            width: 100%;
+        }
+        .news-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding: 20px;
+        }
+        .news-item {
+            width: calc(50% - 20px);
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #f4f4f4;
+            border-radius: 5px;
+        }
+        .news-item img {
+            width: 200px;
+            height: 180px;
+            border-radius: 5px;
+        }
+        .news-item h3 {
+            margin-top: 10px;
+            font-size: 18px;
+        }
+        .news-item p {
+            font-size: 14px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Website Tin Tức</h1>
+    </header>
+    <nav>
+        <a href="index.html">Trang Chủ</a>
+        <a href="category.html">Chuyên mục tin tức</a>
+        <a href="search.html">Tìm kiếm</a>
+        <a href="contact.html">Liên hệ</a>
+    </nav>
+    <section>
+        <h3>Thể thao</h3>
+        <div class="news-container" id="thethao-container"></div>
+    </section>
+    <section>
+        <h3>Giải trí</h3>
+        <div class="news-container" id="giaitri-container"></div>
+    </section>
+    <section>
+        <h3>Kinh tế</h3>
+        <div class="news-container" id="kinhte-container"></div>
+    </section>
+    <section>
+        <h3>Chính trị</h3>
+        <div class="news-container" id="chinhtri-container"></div>
+    </section>
+    <footer>
+       Website Tin Tức &copy; 2024.
+	Phạm Quỳnh Trang - 23070301
+	Ngô Quang Khải - 23070411
+	Đỗ Thị Uyên - 23070444
+	Nguyễn Thảo Phương - 23070364
+    </footer>
+    <script src="data.js"></script>
+    <script>
+        let newsData = news.new;
+
+// Sort news by date in descending order
+newsData.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+function createNewsItem(item) {
+    let newsItem = document.createElement('a');
+    newsItem.href = `article.html?id=${item.id}`;
+
+    newsItem.style.display = "flex";
+    newsItem.style.justifyContent = "space-between";
+    newsItem.classList.add('news-item');
+
+    newsItem.innerHTML = `
+        <div>
+            <img src="${item.image}">
+        </div>
+        <div>
+            <h3>${item.title}</h3>
+            <p>${item.description}</p>
+        </div>
+    `;
+
+    return newsItem;
+}
+
+let thethaoContainer = document.getElementById('thethao-container');
+let giaitriContainer = document.getElementById('giaitri-container');
+let kinhteContainer = document.getElementById('kinhte-container');
+let chinhtriContainer = document.getElementById('chinhtri-container');
+console.log(chinhtriContainer);
+newsData.forEach(item => {
+    if (item.type === "thethao" && thethaoContainer.childElementCount < 6) {
+        thethaoContainer.appendChild(createNewsItem(item));
+    }
+    if (item.type === "giaitri" && giaitriContainer.childElementCount < 6) {
+        giaitriContainer.appendChild(createNewsItem(item));
+    }
+    if (item.type === "chinhtri" && chinhtriContainer.childElementCount < 6) {
+        chinhtriContainer.appendChild(createNewsItem(item));
+    }
+    if (item.type === "kinhte" && kinhteContainer.childElementCount < 6) {
+        kinhteContainer.appendChild(createNewsItem(item));
+    }
+});
+    </script>
+</body>
+</html>

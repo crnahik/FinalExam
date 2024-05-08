@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi Tiết Tin Tức</title>
+    <style>
+        /* CSS styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        footer {
+            display: block;
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            bottom: 0;
+            width: 100%;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+        nav {
+            background-color: #444;
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 5px 10px;
+        }
+        nav a:hover {
+            background-color: #555;
+        }
+        section {
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+        .news-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .news-item img {
+            width: 600px;
+            height: auto;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .news-item h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .news-item p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Website Tin Tức</h1>
+    </header>
+    <nav>
+        <a href="index.html">Trang Chủ</a>
+        <a href="category.html">Chuyên mục tin tức</a>
+        <a href="search.html">Tìm kiếm</a>
+        <a href="contact.html">Liên hệ</a>
+    </nav>
+    <div class="news-container">
+        <div class="news-item" id="news-detail">
+            <!-- JavaScript code will populate news detail here -->
+        </div>
+    </div>
+    <footer>
+        Website Tin Tức &copy; 2024.
+	Phạm Quỳnh Trang - 23070301
+	Ngô Quang Khải - 23070411
+	Đỗ Thị Uyên - 23070444
+	Nguyễn Thảo Phương - 23070364
+    </footer>
+    <script src="data.js"></script>
+    <script>
+        // JavaScript code to populate news detail
+        let urlParams = new URLSearchParams(window.location.search);
+        let newsId = urlParams.get('id');
+        let newsData = news.new;
+
+        let newsDetail = document.getElementById('news-detail');
+
+        let selectedNews = newsData.find(item => item.id === newsId);
+
+        if (selectedNews) {
+            newsDetail.innerHTML = `
+                <img src="${selectedNews.image}">
+                <h3>${selectedNews.title}</h3>
+                <p>${selectedNews.description}</p>
+                <p>${selectedNews.detail}</p>
+            `;
+        } else {
+            newsDetail.innerHTML = "<p>Không tìm thấy tin tức.</p>";
+        }
+    </script>
+</body>
+</html>
